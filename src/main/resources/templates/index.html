@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!--字符串 -->
+	<h1 th:text="${name}"></h1>
+
+	<!--对象 -->
+	<input th:id="${user.name}" th:name="${user.name}"
+		th:value="${user.name}">
+
+	<div th:object="${user}">
+		<input th:id="*{name}" th:name="*{name}" th:value="*{name}">
+	</div>
+
+	<!--集合 -->
+	<tr th:each="user:${userList}">
+		<td th:text="${user.name}"></td>
+		<td th:text="${user.age}"></td>
+		<!-- utext会将css转换 -->
+		<td th:utext="${user.desc}"></td>
+	</tr>
+	<!-- 链接 -->
+	<br/>
+	<a th:href="@{http://www.baidu.com}">aaa</a>
+	
+	<!-- case when -->
+	<div th:switch="${user.name}">
+	<p th:case="'张三'">哈哈哈</p>
+	</div>
+	<!--获取i18n国际化配置文件的值  i18n/messages.properties  在application.properties中配置 i18n-->
+   <p th:text="#{com.demo.a}" >This text will not be show! </p>
+	
+</body>
+</html>
