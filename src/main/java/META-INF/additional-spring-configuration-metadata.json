@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "spring.redis.block-when-exhausted",
+  "type": "java.lang.String",
+  "description": "A description for 'spring.redis.block-when-exhausted'"
+}]}

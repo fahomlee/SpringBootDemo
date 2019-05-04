@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>服务异常，请稍后再试。</h1>
+	<div th:object="${exceptionInfo}">
+		<h3 th:text="'这是统一异常页面' "></h3>
+		<h3 th:text="*{'发生时间：'+time}"></h3>
+		<h3 th:text="*{'访问地址：'+url}"></h3>
+		<h3 th:text="*{'异常类型：'+error}"></h3>
+		<h3 th:text="*{'通信状态：'+statusCode+','+reasonPhrase}"></h3>
+		<h3 th:text="*{'堆栈信息：'+stackTrace}"></h3>
+	</div>
+</body>
+</html>
