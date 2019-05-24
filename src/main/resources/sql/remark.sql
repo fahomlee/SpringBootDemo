@@ -10,3 +10,5 @@ COMMENT='角色'
 COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
+--添加字段
+alter table sys_role add column sex INT(1) NOT NULL DEFAULT 1 COMMENT '1男0女';

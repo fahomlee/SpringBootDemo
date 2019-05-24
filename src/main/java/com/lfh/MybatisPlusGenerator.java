@@ -2,8 +2,6 @@ package com.lfh;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.velocity.app.Velocity;
-import org.apache.velocity.app.VelocityEngine;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
@@ -15,7 +13,6 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
 
 public class MybatisPlusGenerator {
@@ -49,11 +46,8 @@ public class MybatisPlusGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名
-                /*
-                 * return projectPath + "/src/main/resources/mapper/" + tableInfo.getEntityName() + "Mapper" +
-                 * StringPool.DOT_XML;
-                 */
-                return null;
+                 return projectPath + "/src/main/resources/mapper/" + tableInfo.getEntityName() + "Mapper" +
+                 StringPool.DOT_XML;
             }
         });
 
