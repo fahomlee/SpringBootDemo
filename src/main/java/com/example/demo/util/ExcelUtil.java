@@ -17,10 +17,17 @@ import org.apache.poi.ss.usermodel.Workbook;
 public class ExcelUtil {
 
     /**
-     * 导出Excel
+     * 导出excel
+     * 
+     * @param list 要导出的数据
+     * @param title excel标题名称
+     * @param sheetName excel sheet名称
+     * @param pojoClass list中的类
+     * @param fileName excel文件名
+     * @param response
      */
     public static void exportExcel(List<?> list, String title, String sheetName, Class<?> pojoClass, String fileName,
-            HttpServletResponse response) {
+                    HttpServletResponse response) {
         Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(title, sheetName), pojoClass, list);
         response.setCharacterEncoding("UTF-8");
         response.setHeader("content-Type", "application/vnd.ms-excel");

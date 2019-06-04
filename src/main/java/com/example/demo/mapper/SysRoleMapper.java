@@ -1,16 +1,20 @@
 package com.example.demo.mapper;
 
-import com.example.demo.pojo.SysRole;
+import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.demo.entity.SysRole;
 
 /**
  * <p>
  * 角色 Mapper 接口
  * </p>
  *
- * @author fahomlee
- * @since 2019-05-21
+ * @author fahomelee
+ * @since 2019-05-29
  */
+@Mapper
 public interface SysRoleMapper extends BaseMapper<SysRole> {
-
+    List<SysRole> selectUserRole(@Param("id") String id);
 }

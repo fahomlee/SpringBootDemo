@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.conf.PropConfig;
-import com.example.demo.pojo.User;
+import com.example.demo.entity.User;
 
 @Controller
 @RequestMapping("/demo1")

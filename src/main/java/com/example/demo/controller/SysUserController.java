@@ -1,21 +1,17 @@
 package com.example.demo.controller;
 
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.example.demo.pojo.SysUser;
+import com.example.demo.entity.SysUser;
 import com.example.demo.service.SysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 
-@RestController
+//@RestController
 @RequestMapping("/sysuser")
 //swagger访问地址 http://localhost:8080/swagger-ui.html
 @Api("SysUserController相关的api")

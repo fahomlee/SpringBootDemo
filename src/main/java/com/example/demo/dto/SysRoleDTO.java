@@ -1,6 +1,7 @@
 package com.example.demo.dto;
 
 import java.io.Serializable;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import io.swagger.annotations.ApiModelProperty;
@@ -20,7 +21,13 @@ import lombok.experimental.Accessors;
 public class SysRoleDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
+    private String [] ids;
 
+    @ApiModelProperty(name = "主键")
+    @Positive
+    private Integer id;
+    
     /**
      * 名称
      */

@@ -1,68 +1,85 @@
 package com.lfh;
 
-import java.util.ArrayList;
-import java.util.List;
-import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
-import com.baomidou.mybatisplus.generator.config.FileOutConfig;
 import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
-import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
 
 public class MybatisPlusGenerator {
     public static void main(String[] args) {
-        GlobalConfig config = new GlobalConfig();
-        String dbUrl = "jdbc:mysql://localhost:3306/testdb?serverTimezone=GMT";
-        DataSourceConfig dataSourceConfig = new DataSourceConfig();
-        dataSourceConfig.setDbType(DbType.MYSQL).setUrl(dbUrl).setUsername("root").setPassword("root")
-                        .setDriverName("com.mysql.cj.jdbc.Driver");
-        StrategyConfig strategyConfig = new StrategyConfig();
-        strategyConfig.setCapitalMode(true)
-                        // 这里结合了Lombok，所以设置为true，如果没有集成Lombok，可以设置为false
-                        .setEntityLombokModel(true).setNaming(NamingStrategy.underline_to_camel)
-                        .setColumnNaming(NamingStrategy.underline_to_camel).setSuperEntityClass("com.baomidou.ant.common.BaseEntity").setRestControllerStyle(true);
-        // 这里因为我是多模块项目，所以需要加上子模块的名称，以便直接生成到该目录下，如果是单模块项目，可以将后面的去掉
-        // String projectPath = System.getProperty("user.dir") + "/viboot-mybatis-plus";
-        String projectPath = System.getProperty("user.dir");
-        // 自定义配置
-        InjectionConfig cfg = new InjectionConfig() {
-            @Override
-            public void initMap() {}
-        };
-        // 如果模板引擎是 freemarker
-        // String templatePath = "/templates/mapper.xml.ftl";
-        // 如果模板引擎是 velocity
-        String templatePath = "/templates/mybatisplus/mapper.xml.vm";
-        // 自定义输出配置
-        List<FileOutConfig> focList = new ArrayList<>();
-        // 自定义配置会被优先输出
-        focList.add(new FileOutConfig(templatePath) {
-            @Override
-            public String outputFile(TableInfo tableInfo) {
-                // 自定义输出文件名
-                 return projectPath + "/src/main/resources/mapper/" + tableInfo.getEntityName() + "Mapper" +
-                 StringPool.DOT_XML;
-            }
-        });
+        // 代码生成器
+        AutoGenerator mpg = new AutoGenerator();
+        // 全局配置
+        GlobalConfig gc = new GlobalConfig();
+        // 项目路径
+        // String projectPath = System.getProperty("user.dir");
+        // 生成文件的输出目录，默认值：D 盘根目录
+        gc.setOutputDir("code");
+        gc.setAuthor("fahomelee");
+        // 是否打开输出目录
+        gc.setOpen(false);
+        gc.setSwagger2(true); // 开启swagger2
+        mpg.setGlobalConfig(gc);
 
-        cfg.setFileOutConfigList(focList);
+        // 数据源配置
+        DataSourceConfig dsc = new DataSourceConfig();
+        dsc.setUrl("jdbc:mysql://localhost:3306/testdb?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT");
+        // dsc.setSchemaName("public");
+        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
+        dsc.setUsername("root");
+        dsc.setPassword("root");
+        mpg.setDataSource(dsc);
 
-        // 设置作者，输出路径，是否重写等属性
-        // projectPath + "/src/main/java"
-        config.setActiveRecord(false).setEnableCache(false).setAuthor("fahomlee").setOutputDir("code")
-                        .setFileOverride(true).setServiceName("%sService");
-        new AutoGenerator().setGlobalConfig(config).setDataSource(dataSourceConfig).setStrategy(strategyConfig)
-                        .setTemplateEngine(new VelocityTemplateEngine()).setCfg(cfg)
-                        // 这里进行包名的设置
-                        .setPackageInfo(new PackageConfig().setParent("com.example.demo").setController("controller")
-                                        .setEntity("pojo").setMapper("mapper").setServiceImpl("service.impl")
-                                        .setService("service"))
-                        .execute();
+        // 包配置
+        PackageConfig pc = new PackageConfig();
+        // 父包模块名 dao/service/controller
+        pc.setModuleName("");
+        // 父包名。如果为空，将下面子包名必须写全部， 否则就只需写子包名
+        pc.setParent("com.example.demo");
+        // Entity包名，默认为entity
+        // pc.setEntity("entity");
+        // xml包名
+        pc.setXml("xml");
+        mpg.setPackageInfo(pc);
+
+        // 配置模板
+        TemplateConfig templateConfig = new TemplateConfig();
+
+        // 配置自定义输出模板
+        // 指定自定义模板路径，注意不要带上.ftl/.vm, 会根据使用的模板引擎自动识别
+        // templateConfig.setEntity("templates/entity2.java");
+        // templateConfig.setService();
+        // 不生成controller
+        // templateConfig.setController(null);
+        // 不生成xml
+        // templateConfig.setXml(null);
+        mpg.setTemplate(templateConfig);
+
+        // 策略配置
+        StrategyConfig strategy = new StrategyConfig();
+        // 数据库表映射到实体的命名策略
+        strategy.setNaming(NamingStrategy.underline_to_camel);
+        // 数据库表字段映射到实体的命名策略
+        strategy.setColumnNaming(NamingStrategy.underline_to_camel);
+        strategy.setEntityLombokModel(true);// lombok
+        strategy.setRestControllerStyle(true);
+        // strategy.setSuperEntityColumns("id");
+        // 驼峰转连字符
+        strategy.setControllerMappingHyphenStyle(true);
+        // 是否生成实体时，生成字段注解
+        strategy.entityTableFieldAnnotationEnable(true);
+        strategy.setTablePrefix(pc.getModuleName() + "_");
+        
+        // strategy.setInclude();
+        // 要排除的表名，允许正则表达式
+       // 要包含的表名，允许正则表达式 
+        strategy.setExclude("sys_role","sys_user");
+        mpg.setStrategy(strategy);
+        mpg.setTemplateEngine(new VelocityTemplateEngine());
+        mpg.execute();
     }
 }
