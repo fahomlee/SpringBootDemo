@@ -1,3 +1,4 @@
+
 package com.example.demo.controller;
 
 
@@ -37,9 +38,13 @@ import lombok.extern.slf4j.Slf4j;
  * @author fahomlee
  * @since 2019-05-21
  */
+
 @RestController
+
 @RequestMapping("/sysRole")
+
 @Api("SysRoleController相关的api")
+
 @Slf4j
 public class SysRoleController {
 
@@ -49,7 +54,9 @@ public class SysRoleController {
 
 
     @PostMapping("/addSysRole")
+
     @ApiOperation(value = "新增sysrole", notes = "新增sysrole")
+
     @ApiImplicitParam(name = "sysRoleDTO", value = "单个用户信息", dataType = "SysRoleDTO")
     public void addSysRole(@Valid @RequestBody SysRoleDTO sysRoleDTO) {
         log.info("add sysrole begin...");
@@ -60,7 +67,9 @@ public class SysRoleController {
 
 
     @PostMapping("/updateSysRole")
+
     @ApiOperation(value = "修改sysrole", notes = "修改sysrole")
+
     @ApiImplicitParam(name = "sysRoleDTO", value = "单个用户信息", dataType = "SysRoleDTO")
     public void updateSysRole(@Valid @RequestBody SysRoleDTO sysRoleDTO) {
         SysRole sysRole = new SysRole();
@@ -71,8 +80,11 @@ public class SysRoleController {
 
 
     @GetMapping("/listSysRole") // 不能使用@RequestBody
+
     @ApiOperation(value = "查询SysRole列表", notes = "查询SysRole列表")
+
     @ApiImplicitParams({@ApiImplicitParam(name = "sysRoleDTO", value = "单个用户信息", dataType = "SysRoleDTO"),
+
             @ApiImplicitParam(name = "page", value = "分页信息", dataType = "Page<SysRole>")})
     public IPage<SysRole> listSysRole(SysRoleDTO sysRoleDTO, Page<SysRole> page) {
         log.info("list sysrole begin...");
@@ -81,7 +93,9 @@ public class SysRoleController {
 
 
     @PostMapping("/deleteSysRole")
+
     @ApiOperation(value = "删除sysrole", notes = "删除sysrole")
+
     @ApiImplicitParam(name = "sysRoleDTO", value = "单个用户信息", dataType = "SysRoleDTO")
     public void deleteSysRole(@RequestBody SysRoleDTO sysRoleDTO) {
         log.info("add sysrole begin...");
@@ -100,13 +114,11 @@ public class SysRoleController {
      * @return
      */
     @PostMapping("/importSysRole")
+
     @ApiOperation(value = "导入sysrole", notes = "导入sysrole")
     public String importSysRole(@RequestParam("file") MultipartFile file) {
         log.info("import sysrole begin...");
-        ImportParams importParams = new ImportParams();
-        // 默认排除第1行标题行，除标题行的第一行开始读取
-        importParams.setStartRows(0);
-        // 需要验证
+        ImportParams importParams = new ImportParams(); // 默认排除第1行标题行，除标题行的第一行开始读取 importParams.setStartRows(0); // 需要验证
         importParams.setNeedVerfiy(true);
         try {
             ExcelImportResult<SysRoleDTO> excelImportResult =
@@ -135,4 +147,5 @@ public class SysRoleController {
 
 
 }
+
 

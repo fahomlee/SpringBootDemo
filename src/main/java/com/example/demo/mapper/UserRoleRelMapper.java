@@ -1,3 +1,4 @@
+
 package com.example.demo.mapper;
 
 import com.example.demo.entity.UserRoleRel;
@@ -16,3 +17,4 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 public interface UserRoleRelMapper extends BaseMapper<UserRoleRel> {
 
 }
+

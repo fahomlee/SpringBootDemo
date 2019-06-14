@@ -1,3 +1,4 @@
+
 package com.example.demo.mapper;
 
 import java.util.List;
@@ -15,5 +16,6 @@ import com.example.demo.entity.SysUser;
  */
 @Mapper
 public interface SysUserMapper extends BaseMapper<SysUser> {
-     List<SysUser> selectSysUserList();
+    List<SysUser> selectSysUserList();
 }
+

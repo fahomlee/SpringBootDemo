@@ -1,3 +1,4 @@
+
 package com.example.demo.service.impl;
 
 import java.util.ArrayList;
@@ -33,13 +34,13 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 
     @Autowired
     private SysUserMapper sysUserMapper;
+
     @Autowired
     private SysRoleMapper sysRoleMapper;
 
     @Override
     public String importSysRole(List<SysRoleDTO> sysRoleDTOs) {
-        List<SysRole> sysRoles = new ArrayList<>();
-        // excel去重
+        List<SysRole> sysRoles = new ArrayList<>(); // excel去重
         sysRoleDTOs = CommonUtil.rmDupAndKeepOrder(sysRoleDTOs);
         for (SysRoleDTO sysRoleDTO : sysRoleDTOs) {
             SysRole sysRole = new SysRole();
@@ -77,3 +78,4 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     }
 
 }
+

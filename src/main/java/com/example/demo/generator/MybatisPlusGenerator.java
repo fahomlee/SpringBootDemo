@@ -1,4 +1,4 @@
-package com.lfh;
+package com.example.demo.generator;
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
@@ -77,7 +77,8 @@ public class MybatisPlusGenerator {
         // strategy.setInclude();
         // 要排除的表名，允许正则表达式
        // 要包含的表名，允许正则表达式 
-        strategy.setExclude("sys_role","sys_user");
+        strategy.setInclude("t_order","t_order_item");
+        //strategy.setExclude("sys_role","sys_user","user_1","user_role_rel");
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new VelocityTemplateEngine());
         mpg.execute();
