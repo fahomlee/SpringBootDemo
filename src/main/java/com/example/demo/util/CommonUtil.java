@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONPath;
 /**
  * 通用工具类
  *
@@ -27,5 +29,14 @@ public class CommonUtil {
         impList.clear();
         impList.addAll(newList);
         return impList;
+    }
+    
+    public static void main(String[] args) {
+        JSONObject jsonObject = JSON.parseObject("{\"data\":{\"shebao_brief\":{\"姓名\":\"全小琴\"}}}");
+        JSONObject dataObject = jsonObject.getJSONObject("data");
+        JSONObject shebao_brief = dataObject.getJSONObject("shebao_brief");
+        //JSONPath解析中文key
+        String h_name = (String)JSONPath.read(dataObject.toJSONString(),"$.shebao_brief.\\姓\\名");
+        System.out.println(h_name);
     }
 }

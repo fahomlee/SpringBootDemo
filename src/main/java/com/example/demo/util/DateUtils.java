@@ -11,7 +11,7 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-//import com.alibaba.fastjson.JSONPath;
+import com.alibaba.fastjson.JSONPath;
 
 /**
  * 描述:公共日期工具类
@@ -559,7 +559,6 @@ public class DateUtils {
                         + "        \"source\": \"rongtou_FetchFromRong360\"\r\n" + "    },\r\n"
                         + "    \"seqNum\": \"e0fcd2f656ad43f6a702eb1c5667c556\",\r\n" + "    \"bizCode\": null,\r\n"
                         + "    \"message\": \"查询成功\",\r\n" + "    \"status\": 10\r\n" + "}");
-
         /*
          * if (jsonObject != null && jsonObject.containsKey("status") && "10".equals(jsonObject.getString("status")) &&
          * jsonObject.containsKey("data")) { JSONObject dataObject = jsonObject.getJSONObject("data"); jsonObject =
