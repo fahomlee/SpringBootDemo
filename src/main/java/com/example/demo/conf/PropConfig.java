@@ -13,7 +13,7 @@ import org.springframework.context.annotation.PropertySource;
 //配置文件中参数的前缀    pom中不用引入spring-boot-configuration-processor也可以使用@ConfigurationProperties
 @ConfigurationProperties(prefix = "com.demo")
 /**
- * 读取配置文件
+ * 读取配置文件（properties文件）
  * @author fahomlee
  *
  */
